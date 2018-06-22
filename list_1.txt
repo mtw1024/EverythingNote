@@ -1,0 +1,18 @@
+----------clone 時把 submodule 一起抓下來----------
+執行 git clone 時 Git 不會自動把 submodule 一起 clone 過來，必須加上 --recursive 遞歸參數，這樣可以連帶 submodule 的 submodule 通通一起抓下來：
+git clone --recursive git@github.com:chinghanho/.dotfiles.git
+
+git submodule init：根據 .gitmodules 的名稱和 URL，將這些資訊註冊到 .git/config 內，可是把 .gitmodules 內不用的 submodule 移除，使用這個指令並沒辦法自動刪除 .git/config 的相關內容，必須手動刪除；
+git submodule update：根據已註冊（也就是 .git/config ）的 submodule 進行更新，例如 clone 遺失的 submodule，也就是上一段講的方法，所以執行這個指令前最好加上 --init；
+git submodule sync：如果 submodule 的 remote URL 有變動，可以在 .gitmodules 修正 URL，然後執行這個指令，便會將 submodule 的 remote URL 更正。
+
+建立 Git Submodule
+在練習 git 指令之前請先註冊好 github 帳號，並且開一個測試 repository，建立 Submodule 非常容易，範例如下:
+01
+git submodule add <repository> [<path>]</path></repository>
+實際指令範例:
+01
+git submodule add https://github.com/appleboy/CodeIgniter-TW-Language user_guide
+ 
+ syn module 資料
+git submodule sync
